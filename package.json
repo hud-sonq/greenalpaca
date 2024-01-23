@@ -15,16 +15,11 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@pinia/nuxt": "^0.5.1",
     "@types/mongoose": "^5.11.97",
     "mongoose": "^8.1.0",
     "pinia": "^2.1.7",
     "zod": "^3.22.4",
     "nvm": "^0.0.4"
-=======
-    "nuxt-server-utils": "^0.0.7",
-    "pinia": "^2.1.7"
->>>>>>> fed95b108c7613661f6c8bf81d92232955fa1f1c
   }
 }
