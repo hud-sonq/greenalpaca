@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 export const useMyAvailableProductsStore = defineStore({
-    id: 'my-available-products',
+    id: 'all-available-products',
     state: () => ({
         products: [],
     }),
@@ -12,5 +12,4 @@ export const useMyAvailableProductsStore = defineStore({
             this.products = products
         },
     },
-  
 })

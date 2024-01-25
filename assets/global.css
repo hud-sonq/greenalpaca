@@ -1,0 +1,13 @@
+:root {
+  --background-primary: #ffffff;
+  --text-primary: #000000;
+  --alpaca-green: #10763c;
+  --accent-primary: #1baa598f;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}

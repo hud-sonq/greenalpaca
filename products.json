@@ -1,0 +1,200 @@
+{
+    "category": "accessories",
+    "subcategory": "hats",
+    "name": "Wool 5-Panel Cap",
+    "price": 40.00,
+    "size": "OS",
+    "color": "Black",
+    "brand": "Arc'teryx",
+    "country": "Bangladesh",
+    "condition": "Used",
+    "description": "An excellent warm wool 5-panel cap designed by Arc'teryx. No Flaws",
+    "inventory": 1,
+    "imageDir": "/images/accessories/hats/arcteryxhat"
+}
+  
+{
+    "category": "accessories",
+    "subcategory": "keychain",
+    "name": "hook buckle key ring",
+    "price": 38.00,
+    "size": "OS",
+    "color": "Black",
+    "brand": "master-piece",
+    "country": "Japan",
+    "condition": "New with Tags",
+    "description": "High quality keychain. Made in Japan with American Leather",
+    "inventory": 1,
+    "imageDir": "/images/accessories/keychains/masterpiecekeychain1"
+}
+
+{
+    "category": "acessories",
+    "subcategory": "keychain",
+    "name": "CARABINER KeyHolder",
+    "price": 57.00,
+    "size": "OS",
+    "color": "Camel",
+    "brand": "master-piece",
+    "country": "Japan",
+    "condition": "New with Tags",
+    "description": "High quality keychain. Made in Japan with American Leather",
+    "inventory": 1,
+    "imageDir": "/images/accessories/keychains/masterpiecekeychain2"
+}
+
+{
+    "category": "bags",
+    "subcategory": "",
+    "name": "LINK Satchel Bag",
+    "price": 66.00,
+    "size": "OS",
+    "color": "Beige",
+    "brand": "master-piece",
+    "country": "Japan",
+    "condition": "New with Tags",
+    "description": "A high quality uni-sex satchel bag featuring leather accents",
+    "inventory": 1,
+    "imageDir": "/images/bags/masterpiecebeigebag"
+}
+
+{
+    "category": "bags",
+    "subcategory": "",
+    "name": "Confi Shoulder Bag",
+    "price": 140.00,
+    "size": "OS",
+    "color": "White",
+    "brand": "master-piece",
+    "country": "Japan",
+    "condition": "New with Tags",
+    "description": "A compact sized shoulder bag made in Japan with Italian Leather, featuring a weighty metal buckle",
+    "inventory": 1,
+    "imageDir": "/images/bags/masterpiecewhitebag"
+}
+
+{
+    "category": "bags",
+    "subcategory": "",
+    "name": "Retro Book Bag 1.0",
+    "price": 35.00,
+    "size": "OS",
+    "color": "Yellow",
+    "brand": "Organic Climbing",
+    "country": "U.S.A.",
+    "condition": "Pre-owned",
+    "description": "A retro-styled daypack made with durable Cordura fabric",
+    "inventory": 1,
+    "imageDir": "/images/bags/organicclimbingbackpack"
+}
+
+{
+    "category": "clothing",
+    "subcategory": "hoodies",
+    "name": "ADER Error Hoodie FW2019 ",
+    "price": 55.00,
+    "size": "A1 (Medium)",
+    "color": "Grey",
+    "brand": "ADER Error",
+    "country": "South Korea",
+    "condition": "Pre-owned",
+    "description": "A high quality hoodie with unique styling. Part of ADER Error Fall-Winter 2019 Collection",
+    "inventory": 1,
+    "imageDir": "/images/clothing/hoodies/adererrorhoodie"
+}
+
+{
+    "category": "clothing",
+    "subcategory": "jackets",
+    "name": "Retro Deep Pile Fleece",
+    "price": 70.00,
+    "size": "Large",
+    "color": "blue-gray",
+    "brand": "KAVU",
+    "country": "China",
+    "condition": "Pre-owned",
+    "description": "A high quality retro fleece with no holes or piling. Over-sized fit. A great alternative to a Patagonia Retro-X.",
+    "inventory": 1,
+    "imageDir": "/images/clothing/jackets/kavujacket"
+}
+
+{
+    "category": "clothing",
+    "subcategory": "pants",
+    "name": "Tuckett Trekking Pant",
+    "price": 40.00,
+    "size": "XL",
+    "color": "Black",
+    "brand": "La Sportiva",
+    "country": "China",
+    "condition": "Pre-owned",
+    "description": "A heavy duty pair of outdoor pants. Designed for climbing and trekking. Pants are sized approximately as 38x33",
+    "inventory": 1,
+    "imageDir": "/images/clothing/pants/lasportivapants"
+}
+
+{
+    "category": "clothing",
+    "subcategory": "shirts",
+    "name": "Tonal Fox T-Shirt",
+    "price": 55.00,
+    "size": "XL",
+    "color": "Green",
+    "brand": "Maison Kitsune",
+    "country": "Portugal",
+    "condition": "New with Tags",
+    "description": "High quality T-Shirt with embroided Fox Head. Designed by Maison Kitsune",
+    "inventory": 1,
+    "imageDir": "/images/clothing/shirts/maisonkitsunegreenshirt"
+}
+
+{
+    "category": "clothing",
+    "subcategory": "shirts",
+    "name": "Tonal Fox T-Shirt",
+    "price": 55.00,
+    "size": "XL",
+    "color": "Yellow",
+    "brand": "Maison Kitsune",
+    "country": "Portugal",
+    "condition": "New with Tags",
+    "description": "High quality T-Shirt with embroided Fox Head. Designed by Maison Kitsune",
+    "inventory": 1,
+    "imageDir": "/images/clothing/shirts/maisonkitsuneyellowshirt"
+}
+
+{
+    "category": "clothing",
+    "subcategory": "shorts",
+    "name": "Casual Shorts",
+    "price": 30.00,
+    "size": "32",
+    "color": "Beige",
+    "brand": "Arc'teryx",
+    "country": "Bangladesh",
+    "condition": "Pre-owned",
+    "description": "A high quality pair of cotton shorts designed by Arc'teryx",
+    "inventory": 1,
+    "imageDir": "/images/clothing/shorts/arcteryxshorts"
+}
+
+{
+    "category": "shoes",
+    "subcategory": "",
+    "name": "Vegan Doc Martens",
+    "price": 60.00,
+    "size": "US10",
+    "color": "Black",
+    "brand": "Doc Martens",
+    "country": "Vietnam",
+    "condition": "Pre-owned",
+    "description": "100% Vegan with no animal products used. ID: 14045",
+    "inventory": 1,
+    "imageDir": "/images/shoes/docmartensvegan"
+}
+  
+  
+  
+  
+  
+  
