@@ -12,6 +12,7 @@ export interface ProductDocument extends Document {
     condition: string;
     description: string;
     imageDir: string;
+    images: string[];
 }
 
 const productSchema = new Schema(
@@ -24,7 +25,7 @@ const productSchema = new Schema(
         subcategory: {
             type: String,
             required: true,
-            trim: true,
+            trim: false,
         },
         name: {
             type: String,
@@ -72,6 +73,10 @@ const productSchema = new Schema(
             required: true,
             trim: true,
         },
+        images: {
+            type: [String],
+            required: false,
+        }
     },
     { timestamps: true }
 );

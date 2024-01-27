@@ -1,8 +1,9 @@
 :root {
+  --canvas-primary: #e8b46f;
   --background-primary: #ffffff;
   --text-primary: #000000;
   --alpaca-green: #10763c;
-  --accent-primary: #1baa598f;
+  --accent-primary: #1baa59dc;
 }
 
 html, body {
@@ -10,4 +11,20 @@ html, body {
   height: 100%;
   margin: 0px;
   padding: 0px;
+}
+
+::-webkit-scrollbar {
+  width: .75em;
+}
+
+::-webkit-scrollbar-track {
+  border: 5px var(--background-primary);
+	background-color: var(--background-primary);
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-primary);
+  border: 2px solid var(--text-primary);
+  width: 15px;
 }

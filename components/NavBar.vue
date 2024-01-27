@@ -31,6 +31,7 @@
   align-items: center;
   gap: .1rem;
   border-bottom: 2px solid black;
+  border-right: 2px solid black;
 }
 
 .navbar-item {

@@ -10,7 +10,8 @@
     "condition": "Used",
     "description": "An excellent warm wool 5-panel cap designed by Arc'teryx. No Flaws",
     "inventory": 1,
-    "imageDir": "/images/accessories/hats/arcteryxhat"
+    "imageDir": "/images/accessories/hats/arcteryxhat1",
+    "images": []
 }
   
 {
@@ -25,7 +26,8 @@
     "condition": "New with Tags",
     "description": "High quality keychain. Made in Japan with American Leather",
     "inventory": 1,
-    "imageDir": "/images/accessories/keychains/masterpiecekeychain1"
+    "imageDir": "/images/accessories/keychains/masterpiecekeychain1",
+    "images": []
 }
 
 {
@@ -40,7 +42,8 @@
     "condition": "New with Tags",
     "description": "High quality keychain. Made in Japan with American Leather",
     "inventory": 1,
-    "imageDir": "/images/accessories/keychains/masterpiecekeychain2"
+    "imageDir": "/images/accessories/keychains/masterpiecekeychain2",
+    "images": []
 }
 
 {
@@ -55,7 +58,8 @@
     "condition": "New with Tags",
     "description": "A high quality uni-sex satchel bag featuring leather accents",
     "inventory": 1,
-    "imageDir": "/images/bags/masterpiecebeigebag"
+    "imageDir": "/images/bags/masterpiecebeigebag",
+    "images": []
 }
 
 {
@@ -70,7 +74,8 @@
     "condition": "New with Tags",
     "description": "A compact sized shoulder bag made in Japan with Italian Leather, featuring a weighty metal buckle",
     "inventory": 1,
-    "imageDir": "/images/bags/masterpiecewhitebag"
+    "imageDir": "/images/bags/masterpiecewhitebag",
+    "images": []
 }
 
 {
@@ -85,7 +90,8 @@
     "condition": "Pre-owned",
     "description": "A retro-styled daypack made with durable Cordura fabric",
     "inventory": 1,
-    "imageDir": "/images/bags/organicclimbingbackpack"
+    "imageDir": "/images/bags/organicclimbingbackpack",
+    "images": []
 }
 
 {
@@ -100,7 +106,8 @@
     "condition": "Pre-owned",
     "description": "A high quality hoodie with unique styling. Part of ADER Error Fall-Winter 2019 Collection",
     "inventory": 1,
-    "imageDir": "/images/clothing/hoodies/adererrorhoodie"
+    "imageDir": "/images/clothing/hoodies/adererrorhoodie",
+    "images": []
 }
 
 {
@@ -115,7 +122,8 @@
     "condition": "Pre-owned",
     "description": "A high quality retro fleece with no holes or piling. Over-sized fit. A great alternative to a Patagonia Retro-X.",
     "inventory": 1,
-    "imageDir": "/images/clothing/jackets/kavujacket"
+    "imageDir": "/images/clothing/jackets/kavujacket",
+    "images": []
 }
 
 {
@@ -130,7 +138,8 @@
     "condition": "Pre-owned",
     "description": "A heavy duty pair of outdoor pants. Designed for climbing and trekking. Pants are sized approximately as 38x33",
     "inventory": 1,
-    "imageDir": "/images/clothing/pants/lasportivapants"
+    "imageDir": "/images/clothing/pants/lasportivapants",
+    "images": []
 }
 
 {
@@ -145,7 +154,8 @@
     "condition": "New with Tags",
     "description": "High quality T-Shirt with embroided Fox Head. Designed by Maison Kitsune",
     "inventory": 1,
-    "imageDir": "/images/clothing/shirts/maisonkitsunegreenshirt"
+    "imageDir": "/images/clothing/shirts/maisonkitsunegreenshirt",
+    "images": []
 }
 
 {
@@ -160,7 +170,8 @@
     "condition": "New with Tags",
     "description": "High quality T-Shirt with embroided Fox Head. Designed by Maison Kitsune",
     "inventory": 1,
-    "imageDir": "/images/clothing/shirts/maisonkitsuneyellowshirt"
+    "imageDir": "/images/clothing/shirts/maisonkitsuneyellowshirt",
+    "images": []
 }
 
 {
@@ -175,25 +186,9 @@
     "condition": "Pre-owned",
     "description": "A high quality pair of cotton shorts designed by Arc'teryx",
     "inventory": 1,
-    "imageDir": "/images/clothing/shorts/arcteryxshorts"
+    "imageDir": "/images/clothing/shorts/arcteryxshorts",
+    "images": []
 }
-
-{
-    "category": "shoes",
-    "subcategory": "",
-    "name": "Vegan Doc Martens",
-    "price": 60.00,
-    "size": "US10",
-    "color": "Black",
-    "brand": "Doc Martens",
-    "country": "Vietnam",
-    "condition": "Pre-owned",
-    "description": "100% Vegan with no animal products used. ID: 14045",
-    "inventory": 1,
-    "imageDir": "/images/shoes/docmartensvegan"
-}
-  
-  
   
   
   

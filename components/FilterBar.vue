@@ -6,20 +6,19 @@
       </div>
     </div>
     <div class="filter-spot">
-      <div class="filter-title">
-        <h3 class="filter-title-text">filters</h3>
-      </div>
-      <div class="filter-text-container">
-        <p class="filter-text">$$$</p>
-      </div>
-      <div class="filter-text-container">
-        <p class="filter-text">size</p>
-      </div>
-      <div class="filter-text-container">
-        <p class="filter-text">brand</p>
-      </div>
-      <div class="filter-text-container">
-        <p class="filter-text">color</p>
+      <div class="filter-boxes-container">
+        <div class="filter">
+          <span>type</span>
+        </div>
+        <div class="filter">
+          <span>brand</span>
+        </div>
+        <div class="filter">
+          <span>price</span>
+        </div>
+        <div class="filter">
+          <span>size</span>
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +41,7 @@
   justify-content: flex-start;
   align-items: center;
   border-right: 2px solid black;
+  border-left: 2px solid black;
 }
 
 .logo-spot {
@@ -51,6 +51,7 @@
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid black;
+  cursor: pointer;
 }
 
 .logo {
@@ -71,36 +72,38 @@
   top: 72px;
   left: 0;
   width: 72px;
-  height: 100%;
+  height: calc(100% - 64px - 72px);
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
-.filter-title {
+.filter-boxes-container {
   width: 72px;
-  height: 72px;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 64px;
 }
 
-.filter-title-text {
-  font-weight: 10000;
-}
-.filter-text-container {
-  cursor: pointer;
-  width: 72px;
+.filter {
+  width: 68px;
   height: fit-content;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 2px;
 }
 
-.filter-text {
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  padding: 0.5rem;
-  margin-right: 6px;
-  padding-left: 44px;
+.ticks-container {
+  display: flex;
+  flex-direction: column;
 }
+
+
+
 
 </style>

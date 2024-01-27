@@ -1,6 +1,6 @@
 <template>
-  <div class="grid-container">
-    <div class="grid">
+  <div id="products-container">
+    <div class="product">
       <ProductCard v-for="product in data" :key="product._id" :product="product"/>
     </div>
   </div>
@@ -14,21 +14,22 @@ console.log(data.value);
 </script>
 
 <style scoped>
-.grid-container {
+#products-container {
   width: calc(100% - 72px);
   height: calc(100% - 74px);
   position: absolute;
   bottom: 0;
   right: 0;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.grid {
+.product {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding-top: 8px;
+  padding: 7px;
+  gap: 20px;
 }
 </style>
