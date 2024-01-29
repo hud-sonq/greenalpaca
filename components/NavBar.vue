@@ -1,21 +1,25 @@
 <template>
   <div id="navbar">
-    <div class="navbar-item first">
+    <div class="website-title" @click="$emit('categoryClicked', 'featured')">
+      <h1>green alpaca</h1>
+    </div>
+    <div class="navbar-item first" @click="$emit('categoryClicked', 'clothing')">
       <h3>clothing</h3>
     </div>
-    <div class="navbar-item">
+    <div class="navbar-item" @click="$emit('categoryClicked', 'shoes')">
       <h3>shoes</h3>
     </div>
-    <div class="navbar-item">
+    <div class="navbar-item" @click="$emit('categoryClicked', 'accessories')">
       <h3>accessories</h3>
     </div>
-    <div class="navbar-item last">
+    <div class="navbar-item last" @click="$emit('categoryClicked', 'bags')">
       <h3>bags</h3>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const emits = defineEmits(['categoryClicked']);
 
 </script>
 
@@ -32,6 +36,18 @@
   gap: .1rem;
   border-bottom: 2px solid black;
   border-right: 2px solid black;
+  user-select: none;
+}
+
+.website-title {
+  height: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: .3rem;
+  padding-left: 1rem;
+  color: var(--alpaca-green);
 }
 
 .navbar-item {
@@ -45,12 +61,28 @@
   cursor: pointer;
 }
 
+.navbar-item > h3 {
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.navbar-item:hover > h3{
+  opacity: 0.5;
+}
+
 .navbar-item.first {
   border-left: 2px solid black;
 }
 
 .navbar-item.last {
   margin-right: 4px;
+}
+
+@media(max-width: 768px) {
+  .website-title {
+    display: none;
+  }
 }
 
 </style>

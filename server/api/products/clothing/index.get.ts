@@ -4,19 +4,17 @@ import { Product } from "~/server/models/Product.model";
 import fs from "fs";
 import path from "path";
 
-const allProducts = async () => {
-    const products = await Product.find({}).lean().exec();
-    // programatically get the 'imageDir' property from the schema, and grab each image in that directory and append to each of the products ' images[]' property
+const onlyClothing = async (event: any) => {
+    const products = await Product.find({ category: 'clothing' }).lean().exec();
     products.forEach((product) => {
         const imageDir = path.join('public', product.imageDir);
         const images = fs.readdirSync(imageDir);
         product.images = images;
     });
-   return products;
+    return products;
 }
 
 
-export default eventHandler(async () => {
-    const products = await allProducts();
-    return products;
+export default eventHandler(async (event: any) => {
+    return await onlyClothing(event);
 })

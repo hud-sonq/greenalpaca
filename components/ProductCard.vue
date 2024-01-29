@@ -27,7 +27,6 @@ interface Props {
 }
 const props = defineProps<Props>();
 const singlePhotoDir = props.product.imageDir + "/" + props.product.images[0];
-console.log(singlePhotoDir);
 </script>
 
 <style scoped>

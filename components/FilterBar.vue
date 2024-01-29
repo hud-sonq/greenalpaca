@@ -1,6 +1,6 @@
 <template>
   <div id="filterbar">
-    <div class="logo-spot">
+    <div class="logo-spot" @click="$emit('logoClicked')">
       <div class="logo">
         <img class="img" src="/resources/logos/svg/galpaca.svg" alt="logo" />
       </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script lang="ts" setup>
+const emits = defineEmits(["filterClicked", "logoClicked"]);
 
 </script>
 

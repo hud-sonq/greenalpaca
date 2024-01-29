@@ -1,6 +1,6 @@
 <template>
-  <div>
-    
+  <div id="#detailed-product-view">
+
   </div>
 </template>
 
