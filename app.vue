@@ -16,6 +16,7 @@
   height: 100vh;
   position: absolute;
   left: 15vw;
+  opacity: 1;
 }
 
 #canvas {

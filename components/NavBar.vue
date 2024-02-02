@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
-    <div class="website-title" @click="$emit('categoryClicked', 'featured')">
-      <h1>green alpaca</h1>
+    <div class="website-title">
+      <NuxtLink style="text-decoration: none; color: var(--alpaca-green)" to="/about"><h1>green alpaca</h1></NuxtLink>
     </div>
     <div class="navbar-item first" @click="$emit('categoryClicked', 'clothing')">
       <h3>clothing</h3>
@@ -48,6 +48,13 @@ const emits = defineEmits(['categoryClicked']);
   padding-right: .3rem;
   padding-left: 1rem;
   color: var(--alpaca-green);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.website-title:hover {
+  opacity: 0.5;
 }
 
 .navbar-item {

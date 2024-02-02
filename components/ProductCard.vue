@@ -1,7 +1,7 @@
 <template>
   <div id="product-card">
     <div id="product">
-      <img class="img" :src="singlePhotoDir" @click="">
+      <img class="img" :src="singlePhotoDir" @click="$emit('productClicked', product)">
     </div>
     <div id="product-info">
       <div class="product-info-item">
@@ -27,6 +27,8 @@ interface Props {
 }
 const props = defineProps<Props>();
 const singlePhotoDir = props.product.imageDir + "/" + props.product.images[0];
+
+const emits = defineEmits(['productClicked']);
 </script>
 
 <style scoped>
@@ -40,10 +42,7 @@ const singlePhotoDir = props.product.imageDir + "/" + props.product.images[0];
 #product {
   width: 200px;
   height: 200px;
-  border-right: 2px solid var(--accent-primary);
-  border-bottom: 2px solid var(--accent-primary);
-  border-top: 2px solid var(--accent-primary);
-  border-left: 2px solid var(--accent-primary);
+  border: 2px solid var(--accent-primary);
   display: flex;
   justify-content: center;
   align-items: center;

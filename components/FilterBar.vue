@@ -20,12 +20,15 @@
           <span>size</span>
         </div>
       </div>
+      <div class="go-to-checkout">
+        <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout" @click="$emit('cartCheckoutClicked')"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const emits = defineEmits(["filterClicked", "logoClicked"]);
+const emits = defineEmits(["filterClicked", "logoClicked", "cartCheckoutClicked"]);
 
 </script>
 
@@ -102,6 +105,20 @@ const emits = defineEmits(["filterClicked", "logoClicked"]);
 .ticks-container {
   display: flex;
   flex-direction: column;
+}
+
+.go-to-checkout {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 64px;
+  border-bottom: 2px solid var(--accent-primary);
+  border-top: 2px solid var(--accent-primary);
+  border-right: 2px solid var(--accent-primary);
+  cursor: pointer;
 }
 
 
