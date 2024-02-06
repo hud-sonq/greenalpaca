@@ -1,5 +1,5 @@
 <template>
-  <FilterBar @filterClicked="handleFilter" @logoClicked="handleLogoClicked" @cartCheckoutClicked="handleCartCheckoutClicked"/>
+  <FilterBar @filterClicked="handleFilter" @logoClicked="handleLogoClicked"/>
   <div id="right-of-filterbar">
     <NavBar @categoryClicked="handleCategoryChange"/>
     <ProductGrid :filters="filters" :categoryToDisplay="category" :checkout="checkoutClicked"/> 
@@ -13,9 +13,6 @@ const defaultCategory = "featured";
 
 const checkoutClicked = ref(false);
 
-const handleCartCheckoutClicked = () => {
-  checkoutClicked.value = true;
-}
 
 const handleFilter = (filter: any) => {
   filters.value = { ...filters.value, ...filter };

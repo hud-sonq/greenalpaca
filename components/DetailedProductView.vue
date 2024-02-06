@@ -4,40 +4,67 @@
       <img src="/resources/icons/arrow-left.svg" alt="go back"/>
       <p style="padding-left: 4px; color: var(--alpaca-green);">back to products</p>
     </div>
-    <div class="all-container">
-      <div class="product-container">
-        <div class="bottom-left"></div>
-        <div class="bottom-right"></div>
-        <div class="top-left"></div>
-        <div class="top-right"></div>
-        <img :src="singlePhotoDir" alt="product" style="width: 100%; height: 100%;" />
+    <div class="all-photos-vertically-container">
+      <div v-for="image in product.images" :key="image">
+        <a :href="props.product.imageDir + '/'  + image" target="_blank"><img class="product-img" :src="product.imageDir + '/' + image" alt="product image"></a>
+      </div>
+      <div class="bottom-view-detail">
+        <div class="detail-text">
+          <h1>{{product.brand}}, {{ product.name }}</h1>
+          <div class="add-to-cart-price-and-button" @click="addToCart(product)">
+            <div><h1>${{ product.price }}</h1></div>
+            <div class="atc-button">
+              <img src="/resources/icons/plus.svg">
+            </div>
+          </div>
+          <p>{{ product.description }}</p>
+          <p>Size: <span style="font-style: italic;">{{ product.size }}</span> | Color: <span style="font-style: italic;">{{ product.color }}</span> | Condition: <span style="font-style: italic;">{{  product.condition }}</span></p>
+          <p style="font-style: italic;">Manufactured in {{  product.country }}</p>
+          <!-- <p>Color: {{ product.color }}</p>
+          <p>Material: {{ product.material }}</p>
+          <p>Condition: {{ product.condition }}</p>
+          <p>Manufactured in: {{ product.country }}</p> -->
+        </div>
+      </div>
+    </div>
+    <div class="right-view-detail">
+      <div class="detail-text">
+        <h1>{{product.brand}}, {{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Size: <span style="font-style: italic;">{{ product.size }}</span> | Color: <span style="font-style: italic;">{{ product.color }}</span> | Condition: <span style="font-style: italic;">{{  product.condition }}</span></p>
+        <p style="font-style: italic;">Manufactured in {{  product.country }}</p>
+        <div class="add-to-cart-price-and-button" @click="addToCart(product)">
+          <div><h1>${{ product.price }}</h1></div>
+          <div class="atc-button"><img src="/resources/icons/plus.svg"></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
-  <!-- <div class="many-texts-container">
-    <div class="product-text-container">
-      <div style="padding-right: 8px;"><h4>{{props.product.brand}}, {{ props.product.name }}</h4></div>
-      <div style="padding-left: 8px;"><span>{{ props.product.description }}. Made in {{ props.product.country }}</span></div>
-    </div>
-    <div class="product-text-container">
-      <div style="padding-right: 24px;"><span>Size: {{ props.product.size }}</span></div>
-      <div style="padding-right: 8px;"><span>Condition: {{ props.product.condition }}</span></div>
-      <div style="padding-left: 8px;"><span>Inventory: {{ props.product.inventory }}</span></div>
-    </div>
-    <div class="product-text-container">
-      <div style="padding-right: 8px;"><span>Price: ${{ props.product.price }}</span></div>
-      <div style="padding-left: 8px;"><img src="/resources/icons/plus.svg"></div>
-    </div>
-  </div> -->
 
 <script lang="ts" setup>
+import type { ProductDocument } from '~/server/models/Product.model';
+import 'swiper/swiper-bundle.css';
+
+const cart = useCartStore();
 const emits = defineEmits(['closeClicked']);
+
 
 const props = defineProps<{
   product: any;
 }>();
 const singlePhotoDir = props.product.imageDir + "/" + props.product.images[0];
+
+function addToCart(product: ProductDocument) {
+  if(product._id) {
+    cart.addToCart(product);
+    console.log('added to cart from detail', cart.cartItems);
+  }
+}
+
+onMounted(() => {
+  console.log(props.product);
+});
 
 </script>
 
@@ -46,22 +73,94 @@ span {
   font-style: italic;
 }
 
+.add-to-cart-price-and-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top: 2px solid var(--alpaca-green);
+  width: 100%;
+}
+
+.atc-button {
+  pointer-events: all;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--alpaca-green);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.atc-button:hover {
+  background-color: var(--alpaca-green);
+  transition: background-color .3s ease-in-out;
+}
+
+.atc-button:hover img {
+  filter: invert(100%);
+  transition: filter .3s ease-in-out;
+}
+
+.swiper {
+  width: 256px;
+  height: 256px;
+}
+
+.detail-text {
+  padding: 4px;
+  border: 4px solid var(--alpaca-green);
+  box-shadow: 6px 6px var(--canvas-primary);
+}
+
+.right-view-detail {
+  position: fixed;
+  pointer-events: none;
+  top: 74px;
+  right: calc(15vw + 72px);
+  width: 256px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  overflow-y: hidden;
+}
+
+.bottom-view-detail {
+  display: none;
+  width: 256px;
+  height: 256px;
+}
+
 #detailed-product-view {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   top: 0;
   left: 0;
   width: 100%;
   height: calc(100% - 72px);
+  overflow-y: auto;
 }
 
 .go-back-button {
-  position: absolute;
-  top: 0;
-  left: 0;
+  z-index: 3;
+  background-color: white;
+  position: fixed;
+  top: 74px;
+  left: calc(15vw + 76px);
   width: 72px;
   height: 72px;
   display: flex;
@@ -78,13 +177,19 @@ span {
   border-bottom: 2px solid var(--alpaca-green);
 }
 
-.all-container {
-  width: calc(100% - 74px);
-  height: 512px;
+.all-photos-vertically-container {
+  position: absolute;
+  top: 74px;
+  width: fit-content;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
+  margin-left: 12px;
+  margin-top: 12px;
+  padding-bottom: 256px;
 }
 
 .product-container {
@@ -99,44 +204,11 @@ span {
   box-shadow: 6px 6px var(--canvas-primary);
 }
 
-.bottom-left {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 256px;
-  height: 64px;
-  background-color: var(--alpaca-green);
-  z-index: 1;
-}
-
-.bottom-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 128px;
-  height: 64px;
-  background-color: var(--alpaca-green);
-  z-index: 1;
-}
-
-.top-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 128px;
-  height: 64px;
-  background-color: var(--alpaca-green);
-  z-index: 1;
-}
-
-.top-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 64px;
-  height: 64px;
-  background-color: var(--alpaca-green);
-  z-index: 1;
+.product-img {
+  width: 512px;
+  height: 512px;
+  object-fit: contain
+  
 }
 
 @media(max-width: 768px) {
@@ -144,29 +216,31 @@ span {
     width: calc(100% - 74px);
   }
 
-  .product-container {
+  .product-img {
     width: 256px;
     height: 256px;
   }
 
-  .bottom-left {
-    width: 128px;
-    height: 32px;
+  .go-back-button {
+    left: 76px;
   }
 
-  .bottom-right {
-    width: 64px;
-    height: 32px;
-  }
+}
 
-  .top-left {
-    width: 64px;
-    height: 32px;
+@media(max-width: 1111px) {
+  .all-photos-vertically-container {
+    padding-bottom: calc(512px + 124px);
   }
-
-  .top-right {
-    width: 32px;
-    height: 32px;
+  .right-view-detail {
+    display: none;
+  }
+  .bottom-view-detail {
+    height: fit-content;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: scroll;
   }
 }
 </style>

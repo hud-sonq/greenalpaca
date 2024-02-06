@@ -13,7 +13,7 @@
       <div class="product-info-item">
         <span>{{ product.size }}</span>
       </div>
-      <div class="product-info-item right">
+      <div class="product-info-item right" @click="addToCart(props.product)">
         <img style="max-height: 100%;" src="/resources/icons/plus.svg">
       </div>
     </div>
@@ -22,6 +22,16 @@
 
 <script lang="ts" setup>
 import type { ProductDocument } from '~/server/models/Product.model';
+import { useCartStore } from '~/stores/cart';
+
+const cart = useCartStore();
+function addToCart(product: ProductDocument) {
+  if(product._id) {
+    cart.addToCart(product);
+    console.log('added to cart from card', cart.cartItems);
+  }
+}
+
 interface Props {
   product: ProductDocument;
 }

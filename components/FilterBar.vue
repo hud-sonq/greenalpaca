@@ -20,15 +20,17 @@
           <span>size</span>
         </div>
       </div>
-      <div class="go-to-checkout">
-        <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout" @click="$emit('cartCheckoutClicked')"/>
-      </div>
+      <NuxtLink to="/checkout">
+        <div class="go-to-checkout">
+          <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout">
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const emits = defineEmits(["filterClicked", "logoClicked", "cartCheckoutClicked"]);
+const emits = defineEmits(["filterClicked", "logoClicked"]);
 
 </script>
 

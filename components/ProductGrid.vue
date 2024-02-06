@@ -2,9 +2,6 @@
   <div id="detailed-view-container">
     <DetailedProductView v-if="showDetail" @closeClicked="showDetail = false" :product="localProduct"/>
   </div>
-  <div id="checkout">
-    <CartCheckout v-if="showCartCheckout" @closeClicked="showCartCheckout = false"/>
-  </div>
   <div id="products-container" v-if="!showDetail">
     <div class="grid-title" v-if="!isLoading">
       <h2>{{ props.categoryToDisplay || 'featured' }}</h2>
@@ -25,18 +22,17 @@ let defaultFetchUrl = 'featured';
 
 const isLoading = ref(false);
 const showDetail = ref(false);
-const showCartCheckout = ref(false);
 
 const props = defineProps<{
   filters: any;
   categoryToDisplay: string;
-  checkout: boolean;
 }>();
 
 const handleProductClicked = (product: ProductDocument) => {
   showDetail.value = true;
   localProduct = product;
 }
+
 
 
 let state = reactive({
