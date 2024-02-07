@@ -20,10 +20,6 @@
           <p>{{ product.description }}</p>
           <p>Size: <span style="font-style: italic;">{{ product.size }}</span> | Color: <span style="font-style: italic;">{{ product.color }}</span> | Condition: <span style="font-style: italic;">{{  product.condition }}</span></p>
           <p style="font-style: italic;">Manufactured in {{  product.country }}</p>
-          <!-- <p>Color: {{ product.color }}</p>
-          <p>Material: {{ product.material }}</p>
-          <p>Condition: {{ product.condition }}</p>
-          <p>Manufactured in: {{ product.country }}</p> -->
         </div>
       </div>
     </div>
@@ -38,16 +34,22 @@
           <div class="atc-button"><img src="/resources/icons/plus.svg"></div>
         </div>
       </div>
+      <div id="successModal" ref="successModal" class="">
+        <div class="atc-success-modal">
+          <h2>Added to cart!</h2>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { ProductDocument } from '~/server/models/Product.model';
-import 'swiper/swiper-bundle.css';
 
 const cart = useCartStore();
 const emits = defineEmits(['closeClicked']);
+
+const successModal = ref<HTMLElement | null>(null);
 
 
 const props = defineProps<{
@@ -60,6 +62,10 @@ function addToCart(product: ProductDocument) {
     cart.addToCart(product);
     console.log('added to cart from detail', cart.cartItems);
   }
+  successModal.value?.classList.add('active');
+  setTimeout(() => {
+    successModal.value?.classList.remove('active');
+  }, 4000);
 }
 
 onMounted(() => {
@@ -208,8 +214,18 @@ span {
   width: 512px;
   height: 512px;
   object-fit: contain
-  
 }
+
+#successModal {
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+
+#successModal.active {
+  opacity: 1;
+}
+
+
 
 @media(max-width: 768px) {
   .all-container {

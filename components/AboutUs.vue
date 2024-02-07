@@ -3,6 +3,7 @@
     <div class="split-container">
       <div class="pic">
         <img class="img" src="/resources/deco/png/hike.png">
+        <p style="font-size: 10px; align-self: auto;">📍 - Sewanee Perimeter Trail, TN</p>
       </div>
       <div class="paragraph">
         <h1>intentional clothing, impeccable style.</h1>
@@ -38,6 +39,7 @@
 
 .pic {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -54,8 +56,8 @@
   height: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   margin-right: 10%;
 }
 
@@ -70,7 +72,7 @@
   }
 
   .paragraph {
-    width: 100%;
+    width: 50%;
     height: 50%;
   }
 }
