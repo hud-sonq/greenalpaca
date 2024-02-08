@@ -8,13 +8,14 @@ export const useCartStore = defineStore('cart', {
   }),
   actions: {
     addToCart(item: ProductDocument) {
-      const existingItem = this.cartItems.find(i => i.id === item.id);
-      if (existingItem) {
+      const alreadyExists = this.cartItems.find((i) => i._id === item._id);
+      if (alreadyExists) {
         // Item is already in the cart, do not add it again
-        return 'Item is already in the cart';
+        return 'Item already in cart';
       } else {
         this.cartItems.push(item);
         this.cartTotal += parseFloat(item.price);
+        return 'Added to cart! Cart total: ' + this.cartTotal;
       }
     },
     removeFromCart(index: number) {

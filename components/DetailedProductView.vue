@@ -36,7 +36,12 @@
       </div>
       <div id="successModal" ref="successModal" class="">
         <div class="atc-success-modal">
-          <h2>Added to cart!</h2>
+          <h2>{{ successModalText }}</h2>
+        </div>
+      </div>
+      <div id="successModal" ref="successModal" class="">
+        <div class="atc-success-modal">
+          <h2>{{ successModalText }}</h2>
         </div>
       </div>
     </div>
@@ -45,22 +50,25 @@
 
 <script lang="ts" setup>
 import type { ProductDocument } from '~/server/models/Product.model';
+const props = defineProps<{
+  product: any;
+}>();
 
 const cart = useCartStore();
 const emits = defineEmits(['closeClicked']);
 
 const successModal = ref<HTMLElement | null>(null);
+const successModalText = ref<string | null>('');
 
-
-const props = defineProps<{
-  product: any;
-}>();
-const singlePhotoDir = props.product.imageDir + "/" + props.product.images[0];
-
-function addToCart(product: ProductDocument) {
+async function addToCart(product: ProductDocument) {
   if(product._id) {
-    cart.addToCart(product);
-    console.log('added to cart from detail', cart.cartItems);
+    try {
+      successModalText.value = cart.addToCart(product);
+      // successModalText.value = 'Added to cart!';
+    } catch (error) {
+      console.log('error adding to cart', error);
+      successModalText.value = (error as Error).message;
+    }
   }
   successModal.value?.classList.add('active');
   setTimeout(() => {
