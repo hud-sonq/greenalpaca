@@ -17,8 +17,10 @@
 
 <script lang="ts" setup>
 import type { ProductDocument } from '~/server/models/Product.model';
+
 let localProduct = {} as ProductDocument; // the product that was clicked on, which goes into detailed view
-let defaultFetchUrl = 'featured';
+
+let defaultFetchUrl = 'featured'; // we need to consolidate APIs and remove this conention
 
 const isLoading = ref(false);
 const showDetail = ref(false);
@@ -32,8 +34,6 @@ const handleProductClicked = (product: ProductDocument) => {
   showDetail.value = true;
   localProduct = product;
 }
-
-
 
 let state = reactive({
   fetchUrl: `/api/products/${props.categoryToDisplay || defaultFetchUrl}`,

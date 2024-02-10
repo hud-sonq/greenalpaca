@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-import ProductSchema from "~/schemas/Product.schema";
 import { Product } from "~/server/models/Product.model";
 import fs from "fs";
 import path from "path";
