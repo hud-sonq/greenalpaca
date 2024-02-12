@@ -1,5 +1,5 @@
 <template>
-  <FilterBar @filterClicked="handleFilter" @logoClicked="handleLogoClicked"/>
+  <FilterBar @logoClicked="handleLogoClicked" @filterClicked="handleFilter"/>
   <div id="right-of-filterbar">
     <NavBar @categoryClicked="handleCategoryChange"/>
     <ProductGrid :filters="filters" :categoryToDisplay="category" :checkout="checkoutClicked"/> 
@@ -13,18 +13,18 @@ const defaultCategory = "featured";
 
 const checkoutClicked = ref(false);
 
+const handleLogoClicked = () => {
+  location.reload();
+}
 
 const handleFilter = (filter: any) => {
-  filters.value = { ...filters.value, ...filter };
+  filters.value = filter;
 }
 
 const handleCategoryChange = (newCategory: any) => {
   category.value = newCategory;
 }
 
-const handleLogoClicked = () => {
-  location.reload();
-}
 </script>
 
 <style>

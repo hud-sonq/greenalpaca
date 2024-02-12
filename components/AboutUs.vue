@@ -6,8 +6,8 @@
         <p style="font-size: 10px; align-self: auto;">📍 - Sewanee Perimeter Trail, TN</p>
       </div>
       <div class="paragraph">
-        <h1 class="text">intentional clothing, impeccable style.</h1>
-        <h2 class="text-logo" style="margin-left: -12px; padding-left: 12px; border-left: 4px solid var(--accent-primary); border-bottom: 4px solid var(--accent-primary); font-style: italic;">green alpaca™ </h2>
+        <h1 class="text">company approved supply.</h1>
+        <h2 class="text-logo" style="margin-left: -12px; padding-left: 12px; border-left: 4px solid var(--accent-primary); border-bottom: 4px solid var(--accent-primary); font-style: italic;">green alpaca</h2>
       </div>
       <div class="pic-location-mobile">
         <p style="font-size: 10px; align-self: auto;">📍 - Sewanee Perimeter Trail, TN</p>

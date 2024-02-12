@@ -3,8 +3,13 @@
     <DetailedProductView v-if="showDetail" @closeClicked="showDetail = false" :product="localProduct"/>
   </div>
   <div id="products-container" v-if="!showDetail">
-    <div class="grid-title" v-if="!isLoading">
-      <h2>{{ props.categoryToDisplay || 'featured' }}</h2>
+    <div class="title-and-toggled-filter">
+      <div class="grid-title" v-if="!isLoading">
+        <h2>{{ props.categoryToDisplay || 'all products' }}</h2>
+      </div>
+      <div class="toggled-filter">
+        <p>{{ props.filters }}</p>
+      </div>
     </div>
     <div class="product" v-if="!isLoading">
       <ProductCard v-for="product in state.data" :key="product._id" :product="product" @productClicked="handleProductClicked"/>
@@ -20,7 +25,7 @@ import type { ProductDocument } from '~/server/models/Product.model';
 
 let localProduct = {} as ProductDocument; // the product that was clicked on, which goes into detailed view
 
-let defaultFetchUrl = 'featured'; // we need to consolidate APIs and remove this conention
+let defaultFetchUrl = 'all'; // we need to consolidate APIs and remove this conention
 
 const isLoading = ref(false);
 const showDetail = ref(false);
@@ -54,6 +59,19 @@ watch(() => props.categoryToDisplay, async (newVal) => {
     }, 750);
   }
 });
+
+watch(() => props.filters, async (newVal) => {
+  try {
+    isLoading.value = true;
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 750);
+  }
+});
+
 
 onBeforeMount(async () => {
   try {
@@ -89,6 +107,13 @@ onBeforeMount(async () => {
   right: 0;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.title-and-toggled-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .grid-title {

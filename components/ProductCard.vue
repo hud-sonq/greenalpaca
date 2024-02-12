@@ -4,13 +4,13 @@
       <img class="img" :src="singlePhotoDir" @click="$emit('productClicked', product)">
     </div>
     <div id="product-info">
-      <div class="product-info-item">
+      <div class="product-info-item" @click="$emit('productClicked', product)">
         <span>{{product.brand}}</span>
       </div>
-      <div class="product-info-item right">
+      <div class="product-info-item right" @click="$emit('productClicked', product)">
         <span>${{product.price}}</span>
       </div>
-      <div class="product-info-item">
+      <div class="product-info-item" @click="$emit('productClicked', product)">
         <span>{{ product.size }}</span>
       </div>
       <div class="product-info-item right" @click="addToCart(props.product)">

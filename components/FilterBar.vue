@@ -8,22 +8,33 @@
     <div class="filter-spot">
       <div class="filter-boxes-container">
         <div class="filter" v-for="filter in filters" :key="filter">
-          <p @click="handleFilterClick(filter)">{{ filter }}</p>
-        </div>
-      <NuxtLink to="/checkout">
-        <div class="go-to-checkout">
-          <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout">
-        </div>
-      </NuxtLink>
-    </div>
-    <div class="filter-opened-spot" v-if="filtersOpened">
-      <div class="filters-bulleted">
-        <div v-for="kind in availableFilterKindsForClicked" :key="kind" class="bullet">
-          <p>{{ kind }}</p>
+          <div @click="handleFilterClick(filter)">
+            <p>{{ filter }}</p>
+          </div>
         </div>
       </div>
+      <div>
+        <NuxtLink to="/checkout">
+          <div class="go-to-checkout">
+            <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout">
+          </div>
+        </NuxtLink>
+      </div>
     </div>
-    
+    <div id="opened-filters-fixed" ref="openedFilterSpot">
+      <div class="to-be-centered">
+        <div class="close-x" @click="closeFilterWindow()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#10763c" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 16H5V5h14zM17 8.4L13.4 12l3.6 3.6l-1.4 1.4l-3.6-3.6L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7z"/></svg>
+        </div>
+        <div class="filters-bulleted" v-if="!isLoading">
+          <div v-for="kind in clickableFilters" class="bullet">
+            <div @click="$emit('filterClicked', kind)"><p>{{ kind }}</p></div>
+          </div>
+        </div>
+        <div v-else>
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"><g><circle cx="3" cy="12" r="2" fill="#10763c"/><circle cx="21" cy="12" r="2" fill="#10763c"/><circle cx="12" cy="21" r="2" fill="#10763c"/><circle cx="12" cy="3" r="2" fill="#10763c"/><circle cx="5.64" cy="5.64" r="2" fill="#10763c"/><circle cx="18.36" cy="18.36" r="2" fill="#10763c"/><circle cx="5.64" cy="18.36" r="2" fill="#10763c"/><circle cx="18.36" cy="5.64" r="2" fill="#10763c"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></g></svg>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,50 +42,98 @@
 <script lang="ts" setup>
 const emits = defineEmits(["filterClicked", "logoClicked"]);
 
-const filters = ref(['type', 'brand', 'price', 'size']);
-const filtersOpened = ref(false);
-const availableFilterKindsForClicked = ref<String[]>([]);
+const openedFilterSpot = ref<HTMLElement | null>(null);
 
-const {data: brands} = useFetch<String[]>('/api/filters/available/brands');
-const brandsAvailable = brands.value;
+const filters = ref(['type', 'brand', 'price']);
+let clickableFilters = <String[]>[];
+const filterSpotOpened = ref(false);
+const isLoading = ref(false);
 
-const {data: sizes} = useFetch<String[]>('/api/filters/available/sizes');
-const sizesAvailable = sizes.value;
+async function getBrands() {
+  const {data} = useFetch('/api/filters/available/brands');
+  return data;
+}
+async function getSubcategories() {
+  const {data} = useFetch('/api/filters/available/subcategories');
+  return data;
+}
 
-const {data: types} = useFetch<String[]>('/api/filters/available/subcategories');
-const typesAvailable = types.value;
 
-
-let state = reactive({
-  filtersToggled: [] as string[],
-});
+console.log(getBrands());
 
 async function handleFilterClick(filter: string) {
-  console.log(filter);
-  if (filter === 'brand') {
-    console.log('in type');
-    filtersOpened.value = true;
-    availableFilterKindsForClicked.value = brandsAvailable;
-  } else if (filter === 'size') {
-    filtersOpened.value = true;
-    availableFilterKindsForClicked.value = sizesAvailable;
-  } else if (filter === 'type') {
-    filtersOpened.value = true;
-    availableFilterKindsForClicked.value = typesAvailable;
-  } else {
-    filtersOpened.value = false;
+  openedFilterSpot.value?.classList.add('active');
+  try {
+    isLoading.value = true;
+    if (filter === 'type') {
+      // @ts-ignore
+      clickableFilters = await getSubcategories();
+    } else if (filter === 'brand') {
+      // @ts-ignore
+      clickableFilters = await getBrands();
+    } else if (filter === 'price') {
+      clickableFilters = ['low-to-high', 'high-to-low'];
+    }
+  } catch (err) {
+    console.log('error on handleFilterClick', err);
+  } finally {
+    isLoading.value = false;
   }
-
 }
 
-function handleFilterApply(filtersToggled: string[]) {
-  // emit logic for re-query
-  // goes to index then to productgrid
-  // emits.filterClicked(filtersToggled);
+function closeFilterWindow() {
+  openedFilterSpot.value?.classList.remove('active');
+  filterSpotOpened.value = false;
 }
+
 </script>
 
 <style scoped>
+
+.close-x {
+  position: relative;
+  top: 0;
+  right: -32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#opened-filters-fixed {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 4;
+  position: absolute;
+  left: 74px;
+  bottom: 0;
+  width: 72px;
+  height: calc(100vh - 74px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#opened-filters-fixed.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.to-be-centered {
+  background: rgba(255, 255, 255, 0.7);
+  height: fit-content;
+  width: 99px;
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
 
 #filterbar {
   position: absolute;
@@ -90,43 +149,20 @@ function handleFilterApply(filtersToggled: string[]) {
   border-left: 2px solid black;
 }
 
-
-.filter-opened-spot {
-  background-color: white;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  padding-left: 4px;
-  z-index: 4;
-  position: absolute;
-  top: 72px;
-  left: 74px;
-  width: 144px;
-  height: fit-content;
+.filters-bulleted {
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-right: 2px solid black;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  max-height: 400px;
-  overflow-y: scroll;
-}
-
-.filters-bulleted{
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   gap: 4px;
+  padding-left: 4px;
 }
 
 .bullet {
   opacity: 1;
   transition: opacity 0.1s ease-in-out;
   width: 100%;
-  border-bottom: 2px solid black;
   cursor: pointer;
 }
 
@@ -163,8 +199,6 @@ function handleFilterApply(filtersToggled: string[]) {
   left: 0;
   width: 72px;
   height: calc(100% - 64px - 72px);
-  padding-top: 32px;
-  padding-bottom: 32px;
 }
 
 .filter-boxes-container {
@@ -189,11 +223,6 @@ function handleFilterApply(filtersToggled: string[]) {
   cursor: pointer;
 }
 
-.ticks-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .go-to-checkout {
   width: 48px;
   height: 48px;
@@ -201,9 +230,8 @@ function handleFilterApply(filtersToggled: string[]) {
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 64px;
+  bottom: 0;
   left: calc(15vw + 2px);
-  border-bottom: 2px solid var(--accent-primary);
   border-top: 2px solid var(--accent-primary);
   border-right: 2px solid var(--accent-primary);
   cursor: pointer;

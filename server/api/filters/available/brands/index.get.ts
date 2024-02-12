@@ -1,6 +1,8 @@
 import { Product } from "~/server/models/Product.model";
+
 const getAvailableBrands = async (event: any) => {
-    const available = await Product.distinct('brand').lean().exec();
+    let available: string[];
+    available = await Product.distinct('brand').lean().exec();
     return available;
 }
 

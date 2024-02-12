@@ -4,10 +4,8 @@ import { Product } from "~/server/models/Product.model";
 import fs from "fs";
 import path from "path";
 
-const onlyRandom = async (event: any) => {
-    const products = await Product.aggregate([
-        { $sample: { size: 10 } }
-    ]);
+const onlyAll = async (event: any) => {
+    const products = await Product.find().lean().exec();
     products.forEach((product) => {
         const imageDir = path.join('public', product.imageDir);
         const images = fs.readdirSync(imageDir);
@@ -18,5 +16,5 @@ const onlyRandom = async (event: any) => {
 
 
 export default eventHandler(async (event: any) => {
-    return await onlyRandom(event);
+    return await onlyAll(event);
 })
