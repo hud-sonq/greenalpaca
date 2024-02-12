@@ -1,6 +1,5 @@
 <template>
-  <div id="canvas">
-  </div>
+  <div id="canvas"></div>
   <div id="app-container">
     <NuxtPage />
   </div>
@@ -35,6 +34,9 @@
     height: 100vh;
     position: fixed;
     left: 0;
+  }
+  #canvas {
+    display: none;
   }
 }
 </style>

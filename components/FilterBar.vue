@@ -7,9 +7,19 @@
     </div>
     <div class="filter-spot">
       <div class="filter-boxes-container">
-        <div class="filter" v-for="filter in filters" :key="filter">
-          <div @click="handleFilterClick(filter)">
+        <!-- <div class="filter" v-for="filter in filters" :key="filter">
+          <div @click="showClickableFilters(filter)">
             <p>{{ filter }}</p>
+          </div>
+        </div> -->
+        <div class="filter">
+          <div @click="showClickableFilters('type')">
+            <p>type</p>
+          </div>
+        </div>
+        <div class="filter">
+          <div @click="showClickableFilters('brand')">
+            <p>brand</p>
           </div>
         </div>
       </div>
@@ -21,14 +31,14 @@
         </NuxtLink>
       </div>
     </div>
-    <div id="opened-filters-fixed" ref="openedFilterSpot">
+    <div id="opened-filters-fixed" ref="expandableFilterWindow">
       <div class="to-be-centered">
         <div class="close-x" @click="closeFilterWindow()">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#10763c" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 16H5V5h14zM17 8.4L13.4 12l3.6 3.6l-1.4 1.4l-3.6-3.6L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7z"/></svg>
         </div>
         <div class="filters-bulleted" v-if="!isLoading">
-          <div v-for="kind in clickableFilters" class="bullet">
-            <div @click="$emit('filterClicked', kind)"><p>{{ kind }}</p></div>
+          <div v-for="specificFilter in clickableFilters" class="bullet">
+            <div @click="$emit('filterClicked', filterKindForEmit, specificFilter)"><p>{{ specificFilter }}</p></div>
           </div>
         </div>
         <div v-else>
@@ -41,13 +51,13 @@
 
 <script lang="ts" setup>
 const emits = defineEmits(["filterClicked", "logoClicked"]);
-
-const openedFilterSpot = ref<HTMLElement | null>(null);
-
-const filters = ref(['type', 'brand', 'price']);
-let clickableFilters = <String[]>[];
-const filterSpotOpened = ref(false);
 const isLoading = ref(false);
+
+const expandableFilterWindow = ref<HTMLElement | null>(null);
+const filterWindowExpanded = ref(false);
+let clickableFilters = <String[]>[];
+
+let filterKindForEmit = ref('');
 
 async function getBrands() {
   const {data} = useFetch('/api/filters/available/brands');
@@ -58,34 +68,30 @@ async function getSubcategories() {
   return data;
 }
 
-
-console.log(getBrands());
-
-async function handleFilterClick(filter: string) {
-  openedFilterSpot.value?.classList.add('active');
+async function showClickableFilters(filter: string) {
+  expandableFilterWindow.value?.classList.add('active');
   try {
     isLoading.value = true;
     if (filter === 'type') {
       // @ts-ignore
       clickableFilters = await getSubcategories();
-    } else if (filter === 'brand') {
+      filterKindForEmit.value = 'subcategory';
+    } else {
       // @ts-ignore
       clickableFilters = await getBrands();
-    } else if (filter === 'price') {
-      clickableFilters = ['low-to-high', 'high-to-low'];
+      filterKindForEmit.value = 'brand';
     }
   } catch (err) {
-    console.log('error on handleFilterClick', err);
+    console.log('error on FilterBar showClickableFilters', err);
   } finally {
     isLoading.value = false;
   }
 }
 
 function closeFilterWindow() {
-  openedFilterSpot.value?.classList.remove('active');
-  filterSpotOpened.value = false;
+  expandableFilterWindow.value?.classList.remove('active');
+  filterWindowExpanded.value = false;
 }
-
 </script>
 
 <style scoped>

@@ -3,12 +3,12 @@
     <DetailedProductView v-if="showDetail" @closeClicked="showDetail = false" :product="localProduct"/>
   </div>
   <div id="products-container" v-if="!showDetail">
-    <div class="title-and-toggled-filter">
-      <div class="grid-title" v-if="!isLoading">
-        <h2>{{ props.categoryToDisplay || 'all products' }}</h2>
+    <div class="title-and-toggled-filter" v-if="!isLoading">
+      <div class="grid-title">
+        <h2>{{ categoryTitle }}</h2>
       </div>
-      <div class="toggled-filter">
-        <p>{{ props.filters }}</p>
+      <div class="toggled-filter" >
+        <p>{{ filterTitle }}</p>
       </div>
     </div>
     <div class="product" v-if="!isLoading">
@@ -30,8 +30,12 @@ let defaultFetchUrl = 'all'; // we need to consolidate APIs and remove this cone
 const isLoading = ref(false);
 const showDetail = ref(false);
 
+let categoryTitle = ref('');
+let filterTitle = ref('');
+
 const props = defineProps<{
-  filters: any;
+  filterKind: any;
+  filterThatWasClicked: any;
   categoryToDisplay: string;
 }>();
 
@@ -51,8 +55,10 @@ watch(() => props.categoryToDisplay, async (newVal) => {
     state.fetchUrl = `/api/products/${newVal}`;
     const { data: newData } = await useFetch<ProductDocument[]>(state.fetchUrl);
     state.data = newData.value as ProductDocument[];
+    categoryTitle.value = newVal;
+    filterTitle.value = '';
   } catch (err) {
-    console.log(err);
+    console.log('error in ProductGrid category watch: ', err);
   } finally {
     setTimeout(() => {
       isLoading.value = false;
@@ -60,26 +66,40 @@ watch(() => props.categoryToDisplay, async (newVal) => {
   }
 });
 
-watch(() => props.filters, async (newVal) => {
+watch(() => props.filterThatWasClicked, async (newVal) => {
   try {
     isLoading.value = true;
+    if (props.filterKind === 'subcategory') {
+      state.fetchUrl = `/api/products/custom/subcategory?filter=${newVal}`;
+      const { data: newData } = await useFetch<ProductDocument[]>(state.fetchUrl);
+      state.data = newData.value as ProductDocument[];
+      filterTitle.value = newVal;
+      categoryTitle.value = 'custom: ';
+    } else if (props.filterKind === 'brand') {
+      state.fetchUrl = `/api/products/custom/brand?filter=${newVal}`;
+      const { data: newData } = await useFetch<ProductDocument[]>(state.fetchUrl);
+      state.data = newData.value as ProductDocument[];
+      filterTitle.value = newVal;
+      categoryTitle.value = 'custom: ';
+    }
   } catch (err) {
-    console.log(err);
+    console.log('error in ProductGrid filter watch: ', err);
   } finally {
     setTimeout(() => {
       isLoading.value = false;
     }, 750);
   }
 });
-
 
 onBeforeMount(async () => {
   try {
     isLoading.value = true;
     const { data: newData } = await useFetch<ProductDocument[]>(state.fetchUrl);
     state.data = newData.value as ProductDocument[];
+    categoryTitle.value = 'all';
+    filterTitle.value = '';
   } catch (err) {
-    console.log(err);
+    console.log('error on ProductGrid onBeforeMount: ', err);
   } finally {
     setTimeout(() => {
       isLoading.value = false;
@@ -112,7 +132,7 @@ onBeforeMount(async () => {
 .title-and-toggled-filter {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -129,6 +149,12 @@ onBeforeMount(async () => {
   padding-right: 16px;
   padding-left: 16px;
   border-right: 2px solid var(--accent-primary);
+}
+
+.toggled-filter {
+  padding-left: 16px;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .product {

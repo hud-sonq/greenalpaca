@@ -75,11 +75,6 @@ async function addToCart(product: ProductDocument) {
     successModal.value?.classList.remove('active');
   }, 4000);
 }
-
-onMounted(() => {
-  console.log(props.product);
-});
-
 </script>
 
 <style scoped>
