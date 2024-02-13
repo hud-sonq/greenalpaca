@@ -1,23 +1,25 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: [
-      ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate']}],
+    ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate']}],
   ],
   imports: {
-      dirs: ['stores'],
+    dirs: ['stores'],
   },
   ssr: false,
   runtimeConfig: {
-      mongoURI: '',
-      discordWebhook: '',
-      authSecret: '',
-      public: {
-          apiBase: '',
-      }
+    mongoURI: '',
+    discordWebhook: '',
+    authSecret: '',
+    ppClientSecret: '',
+    public: {
+        apiBase: '',
+        ppClientId: ''
+    }
   },
   css: ['~/assets/global.css'],
   app: {
-      baseURL: '/'
+    baseURL: '/'
   },
   nitro: {
     plugins: ["~/server/index.ts"],

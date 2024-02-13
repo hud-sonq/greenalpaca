@@ -15,6 +15,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@paypal/paypal-js": "^8.0.2",
     "@pinia/nuxt": "^0.5.1",
     "@types/mongoose": "^5.11.97",
     "mongoose": "^8.1.0",

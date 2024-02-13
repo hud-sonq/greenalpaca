@@ -20,6 +20,7 @@ export const useCartStore = defineStore('cart', {
     },
     removeFromCart(index: number) {
       this.cartItems.splice(index, 1);
+      this.cartTotal -= parseFloat(this.cartItems[index].price);
     },
     clearCart() {
       this.cartItems = [];
