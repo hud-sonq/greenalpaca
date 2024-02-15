@@ -1,27 +1,9 @@
 <template>
-  <div>
-    <h1>Checkout</h1>
-    <div v-if="cartItems.length === 0">
-      <p>No items in cart</p>
-      <button @click="router.push('/')">Go home</button>
-    </div>
-    <div v-else>
-      <div v-for="item in cartItems" :key="item._id" style="display: flex; border-bottom: 1px solid var(--alpaca-green); border-left: 1px solid var(--alpaca-green); margin-left: 16px; padding-left: 16px;">
-        <div>
-          <h2>{{ item.brand }}</h2>
-          <h3>{{ item.name }} | ${{ item.price }}</h3> 
-          <h4 @click="cart.removeFromCart(item)">remove from cart</h4>
-        </div>
-        <div>
-          <img :src="item.imageDir + `/` + `1.jpg`" style="width: 128px; height: 128px; padding-left: 16px;"/>
-        </div>
-      </div>
-      <div>
-        <h2>Total: ${{ cartTotal }}</h2>
-      </div>
-      <div id="paypal-button-container"></div>
-      <button @click="clearCart">Clear cart</button>
-      <button @click="router.push('/')">Go home</button>
+  <FilterBar @logoClicked="handleLogoClicked" @filterClicked="handleFilterClicked"/>
+  <div id="right-of-filterbar" >
+    <NavBar @categoryClicked="handleCategoryChange"/>
+    <div id="checkout">
+      <CartCheckout />
     </div>
   </div>
 </template>
@@ -29,12 +11,25 @@
 <script lang="ts" setup>
 import { useCartStore } from '~/stores/cart';
 
+const router = useRouter();
 const config = useRuntimeConfig();
 const paypalClientId = config.public.ppClientId;
 console.log(paypalClientId)
 const cart = useCartStore();
 const cartItems = cart.cartItems;
 const cartTotal = cart.cartTotal;
+
+function handleCategoryChange(newCategory: any) {
+  router.push('/');
+}
+
+function handleLogoClicked() {
+  router.push('/');
+}
+
+function handleFilterClicked() {
+  router.push('/');
+}
 
 const cartSingleImages = () => {
   return cartItems.map((item: any) => {
@@ -70,11 +65,6 @@ onMounted(() => {
   document.body.appendChild(script);
 });
 
-
-
-
-const router = useRouter();
-
 function clearCart() {
   cart.clearCart();
   location.reload();
@@ -88,5 +78,14 @@ function goHandlePayment() {
 </script>
 
 <style>
+#checkout {
+  width: calc(100% - 74px);
+  height: calc(100% - 74px);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
 </style>

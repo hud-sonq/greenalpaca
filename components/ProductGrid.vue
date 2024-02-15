@@ -11,7 +11,7 @@
         <p>{{ filterTitle }}</p>
       </div>
     </div>
-    <div class="product" v-if="!isLoading">
+    <div id="product-grid" v-if="!isLoading">
       <ProductCard v-for="product in state.data" :key="product._id" :product="product" @productClicked="handleProductClicked"/>
     </div>
     <div v-else class="loading">
@@ -52,6 +52,9 @@ let state = reactive({
 watch(() => props.categoryToDisplay, async (newVal) => {
   try {
     isLoading.value = true;
+    if (showDetail) {
+      showDetail.value = false;
+    }
     state.fetchUrl = `/api/products/${newVal}`;
     const { data: newData } = await useFetch<ProductDocument[]>(state.fetchUrl);
     state.data = newData.value as ProductDocument[];
@@ -69,6 +72,9 @@ watch(() => props.categoryToDisplay, async (newVal) => {
 watch(() => props.filterThatWasClicked, async (newVal) => {
   try {
     isLoading.value = true;
+    if (showDetail) {
+      showDetail.value = false;
+    }
     if (props.filterKind === 'subcategory') {
       state.fetchUrl = `/api/products/custom/subcategory?filter=${newVal}`;
       const { data: newData } = await useFetch<ProductDocument[]>(state.fetchUrl);
@@ -157,7 +163,7 @@ onBeforeMount(async () => {
   font-style: italic;
 }
 
-.product {
+#product-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

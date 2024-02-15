@@ -1,7 +1,7 @@
 <template>
   <div id="main" ref="main">
+    <NavBar ></NavBar>
     <FilterBar @logoClicked="handleLogoClicked"/>
-    <NavBar/>
     <AboutUs/>
   </div>
 </template>
@@ -24,6 +24,7 @@ onMounted(() => {
 
 <style scoped>
 
+
 #main {
   opacity: 0;
   transition: opacity .3s ease-in-out;
@@ -33,4 +34,13 @@ onMounted(() => {
   opacity: 1;
 }
 
+#canvas {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--canvas-primary);
+  z-index: -44;
+}
 </style>

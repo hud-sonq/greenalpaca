@@ -1,5 +1,11 @@
 <template>
   <div id="detailed-product-view">
+    <div class="mobile-view-detail">
+      <div class="mobile-detail-text-container">
+        <div style="height: 14px;"><p>{{product.brand}}</p></div>
+        <div style="height: 14px;"><p>{{product.name}}</p></div>
+      </div>
+    </div>
     <div class="go-back-button" @click="$emit('closeClicked')" >
       <img src="/resources/icons/arrow-left.svg" alt="go back"/>
       <p style="padding-left: 4px; color: var(--alpaca-green);">back to products</p>
@@ -8,18 +14,21 @@
       <div v-for="image in product.images" :key="image">
         <a :href="props.product.imageDir + '/'  + image" target="_blank"><img class="product-img" :src="product.imageDir + '/' + image" alt="product image"></a>
       </div>
-      <div class="bottom-view-detail">
-        <div class="detail-text">
-          <h1>{{product.brand}}, {{ product.name }}</h1>
-          <div class="add-to-cart-price-and-button" @click="addToCart(product)">
-            <div><h1>${{ product.price }}</h1></div>
-            <div class="atc-button">
-              <img src="/resources/icons/plus.svg">
-            </div>
-          </div>
-          <p>{{ product.description }}</p>
-          <p>Size: <span style="font-style: italic;">{{ product.size }}</span> | Color: <span style="font-style: italic;">{{ product.color }}</span> | Condition: <span style="font-style: italic;">{{  product.condition }}</span></p>
-          <p style="font-style: italic;">Manufactured in {{  product.country }}</p>
+      <div class="bottom-desc-mobile">
+        <div style="height: fit-content; border-bottom: 1px solid var(--alpaca-green)">
+          <span>{{ props.product.description }}</span>
+        </div>
+        <div>
+          <span>Size {{ props.product.size }}</span>
+        </div>
+        <div>
+          <span>Condition: {{ props.product.condition }}</span>
+        </div>
+        <div>
+          <span>Manufactured in {{ props.product.country }}</span>
+        </div>
+        <div @click="addToCart(product)" style="border: 2px solid var(--alpaca-green)">
+          <h2>Add to cart + (${{ props.product.price }})</h2>
         </div>
       </div>
     </div>
@@ -125,6 +134,7 @@ span {
   padding: 4px;
   border: 4px solid var(--alpaca-green);
   box-shadow: 6px 6px var(--canvas-primary);
+  background: white;
 }
 
 .right-view-detail {
@@ -145,7 +155,7 @@ span {
   overflow-y: hidden;
 }
 
-.bottom-view-detail {
+.mobile-view-detail {
   display: none;
   width: 256px;
   height: 256px;
@@ -198,7 +208,6 @@ span {
   overflow-y: hidden;
   margin-left: 12px;
   margin-top: 12px;
-  padding-bottom: 256px;
 }
 
 .product-container {
@@ -219,6 +228,13 @@ span {
   object-fit: contain
 }
 
+.bottom-desc-mobile {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 #successModal {
   opacity: 0;
   transition: opacity .3s ease-in-out;
@@ -226,6 +242,13 @@ span {
 
 #successModal.active {
   opacity: 1;
+}
+
+.mobile-detail-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 
@@ -247,19 +270,23 @@ span {
 }
 
 @media(max-width: 1111px) {
-  .all-photos-vertically-container {
-    padding-bottom: calc(512px + 124px);
-  }
   .right-view-detail {
     display: none;
   }
-  .bottom-view-detail {
+  .mobile-view-detail {
+    background: transparent;
     height: fit-content;
-    display: flex;
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
-    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 16px;
+  }
+  .bottom-desc-mobile {
+    display: flex;
   }
 }
 </style>

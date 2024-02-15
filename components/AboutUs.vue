@@ -6,8 +6,13 @@
         <p style="font-size: 10px; align-self: auto;">📍 - Sewanee Perimeter Trail, TN</p>
       </div>
       <div class="paragraph">
-        <h1 class="text">company approved supply.</h1>
-        <h2 class="text-logo" style="margin-left: -12px; padding-left: 12px; border-left: 4px solid var(--accent-primary); border-bottom: 4px solid var(--accent-primary); font-style: italic;">green alpaca</h2>
+        <div>
+          <h1 class="text">company approved supply.</h1>
+        </div>
+        <div class="company-and-svg" @click="goHome">
+          <h2 class="text-logo text">green alpaca</h2>
+          <svg id="arrow-svg" class="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="black" d="m10.537 12l-4.24-4.246q-.141-.14-.154-.341t.153-.367q.16-.16.354-.16t.354.16l4.388 4.389q.131.13.184.267q.053.136.053.298t-.053.298q-.053.137-.184.267l-4.388 4.389q-.14.14-.341.153q-.201.012-.367-.153q-.16-.16-.16-.354t.16-.354zm6.1 0l-4.24-4.246q-.141-.14-.154-.341t.153-.367q.16-.16.354-.16t.354.16l4.388 4.389q.131.13.184.267q.053.136.053.298t-.053.298q-.053.137-.184.267l-4.388 4.389q-.14.14-.341.153q-.201.012-.367-.153q-.16-.16-.16-.354t.16-.354z"/></svg>
+        </div>
       </div>
       <div class="pic-location-mobile">
         <p style="font-size: 10px; align-self: auto;">📍 - Sewanee Perimeter Trail, TN</p>
@@ -17,6 +22,10 @@
 </template>
 
 <script lang="ts" setup>
+const router = useRouter();
+function goHome() {
+  router.push('/');
+}
 
 </script>
 
@@ -73,6 +82,32 @@
   color: white;
 }
 
+.text-logo {
+  margin-left: -12px; 
+  padding-left: 12px; 
+  border-left: 4px solid var(--accent-primary); 
+  border-bottom: 4px solid var(--accent-primary); 
+  font-style: italic;
+  box-shadow: -4px 2px var(--canvas-primary); 
+}
+
+.company-and-svg {
+  cursor: pointer;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.company-and-svg:hover {
+  opacity: 0.2;
+}
+
+#arrow-svg {
+  padding-bottom: 5px;
+}
+
 @media (max-width: 768px) {
   .split-container {
     flex-direction: column;
@@ -100,11 +135,14 @@
   }
   .text-logo {
     color: white;
-    box-shadow: -4px 2px var(--canvas-primary); 
   }
 
   .pic-location-mobile {
     display: flex;
+  }
+
+  #arrow-svg {
+    filter: invert(1) drop-shadow(-1px 2px var(--canvas-primary));
   }
 }
 

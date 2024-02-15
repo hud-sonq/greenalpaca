@@ -17,13 +17,19 @@
             <p>brand</p>
           </div>
         </div>
-      </div>
-      <div>
-        <NuxtLink to="/checkout">
-          <div class="go-to-checkout">
-            <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout">
-          </div>
-        </NuxtLink>
+        <div class="filter" style="border-bottom: none;">
+          <NuxtLink to="/checkout" style="text-decoration: none;">
+            <div>
+              <img style="width: 48px;" class="img" src="/resources/icons/checkout.svg" alt="checkout">
+              <div class="cart-info">
+                <span style="color: black; background-color: rgba(255, 255, 255, 0.75);">{{ currentCartQty }} | ${{ currentCartTotal }}</span>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+        <div id="cart-info-animation" ref="cartAnimation">
+          <span style="color: var(--alpaca-green); background-color: rgba(255, 255, 255, 0.6);">{{ currentCartQty }} | ${{ currentCartTotal }}</span>
+        </div>
       </div>
     </div>
     <div id="opened-filters-fixed" ref="expandableFilterWindow">
@@ -49,8 +55,22 @@ const emits = defineEmits(["filterClicked", "logoClicked"]);
 const isLoading = ref(false);
 
 const expandableFilterWindow = ref<HTMLElement | null>(null);
+let cartAnimation = ref<HTMLElement | null>(null);
 const filterWindowExpanded = ref(false);
 let clickableFilters = <String[]>[];
+
+const cart = useCartStore();
+let currentCartQty = ref(cart.cartItems.length);
+let currentCartTotal = ref(cart.cartTotal);
+
+watch (() => cart.cartItems.length, (newVal) => {
+  cartAnimation.value?.classList.add('active');
+  currentCartQty.value = newVal;
+  currentCartTotal.value = cart.cartTotal;
+  setTimeout(() => {
+    cartAnimation.value?.classList.remove('active');
+  }, 2000);
+});
 
 let filterKindForEmit = ref('');
 
@@ -90,6 +110,34 @@ function closeFilterWindow() {
 </script>
 
 <style scoped>
+
+#cart-info-animation {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cart-info-animation span {
+  opacity: 0;
+  transform: translateY(-64px);
+  transition: all 0.2s ease-in-out;
+}
+
+#cart-info-animation.active span  {
+  opacity: 1;
+  transform: translateY(-56px);
+}
+.cart-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-top: -36px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid black;
+}
 
 .close-x {
   position: relative;
@@ -221,20 +269,6 @@ function closeFilterWindow() {
   align-items: center;
   border-bottom: 2px solid black;
   padding-bottom: 2px;
-  cursor: pointer;
-}
-
-.go-to-checkout {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  left: calc(15vw + 2px);
-  border-top: 2px solid var(--accent-primary);
-  border-right: 2px solid var(--accent-primary);
   cursor: pointer;
 }
 

@@ -13,8 +13,11 @@
       <div class="product-info-item" @click="$emit('productClicked', product)">
         <span>{{ product.size }}</span>
       </div>
-      <div class="product-info-item right" @click="addToCart(props.product)">
+      <div id="atc" ref="atc" class="product-info-item right active" @click="addToCart(props.product)">
         <img style="max-height: 100%;" src="/resources/icons/plus.svg">
+      </div>
+      <div id="rmc" ref="rmc" class="product-info-item right" @click="removeFromCart(props.product)">
+        <img style="max-height: 100%;" src="/resources/icons/minus.svg">
       </div>
     </div>
   </div>
@@ -24,11 +27,25 @@
 import type { ProductDocument } from '~/server/models/Product.model';
 import { useCartStore } from '~/stores/cart';
 
+let atc = ref<HTMLElement | null>(null);
+let rfc = ref<HTMLElement | null>(null);
+
 const cart = useCartStore();
 function addToCart(product: ProductDocument) {
   if(product._id) {
     cart.addToCart(product);
     console.log('added to cart from card', cart.cartItems);
+    atc.value?.classList.remove('active');
+    rfc.value?.classList.add('active');
+  }
+}
+
+function removeFromCart(product: ProductDocument) {
+  if(product._id) {
+    cart.removeFromCart(product._id);
+    console.log('removed from cart from card', cart.cartItems);
+    rfc.value?.classList.remove('active');
+    atc.value?.classList.add('active');
   }
 }
 
@@ -75,6 +92,24 @@ const emits = defineEmits(['productClicked']);
   display: grid;
   grid-template-columns: auto auto;
   margin-bottom: 8px;
+}
+
+#atc {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#atc.active {
+  opacity: 1;
+}
+
+#rfc {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#rfc.active {
+  opacity: 1;
 }
 
 .product-info-item {
