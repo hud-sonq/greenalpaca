@@ -113,7 +113,7 @@ h3 {
 
 @media(max-width: 360px) {
   h3 {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 </style>
