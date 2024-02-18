@@ -38,13 +38,12 @@ const cartSingleImages = () => {
 };
 
 const handleScriptLoad = async () => {
-  // Your JavaScript to create and render the PayPal button
   (window as any).paypal.Buttons({
     createOrder: function(data: any, actions: any) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: cartTotal // Replace this with the total amount for the cart
+            value: cartTotal 
           }
         }]
       });
@@ -58,7 +57,6 @@ const handleScriptLoad = async () => {
 };
 
 onMounted(() => {
-  // Include the PayPal JavaScript SDK
   let script = document.createElement('script');
   script.src = `https://www.paypal.com/sdk/js?client-id=${paypalClientId}&currency=USD&components=buttons`;
   script.addEventListener('load', handleScriptLoad);
@@ -69,8 +67,6 @@ function clearCart() {
   cart.clearCart();
   location.reload();
 }
-
-
 
 function goHandlePayment() {
   console.log('paying for items');
@@ -87,5 +83,4 @@ function goHandlePayment() {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
 </style>

@@ -110,7 +110,6 @@ function closeFilterWindow() {
 </script>
 
 <style scoped>
-
 #cart-info-animation {
   position: relative;
   width: 100%;
@@ -281,6 +280,4 @@ function closeFilterWindow() {
     left: 0;
   }
 }
-
-
 </style>

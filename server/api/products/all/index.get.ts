@@ -14,7 +14,6 @@ const onlyAll = async (event: any) => {
     return products;
 }
 
-
 export default eventHandler(async (event: any) => {
     return await onlyAll(event);
 })

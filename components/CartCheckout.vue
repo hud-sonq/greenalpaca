@@ -94,7 +94,6 @@ function goHandlePayment() {
 </script>
 
 <style scoped>
-
 #checkout-container {
   padding: 16px;
 }
@@ -115,5 +114,4 @@ function goHandlePayment() {
   justify-content: center;
   align-items: center;
 }
-
 </style>

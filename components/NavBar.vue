@@ -29,6 +29,10 @@ const emits = defineEmits(['categoryClicked']);
 </script>
 
 <style scoped>
+h3 {
+  font-size: 16px;
+}
+
 #navbar {
   width: calc(100% - 72px);
   height: 72px;
@@ -38,7 +42,7 @@ const emits = defineEmits(['categoryClicked']);
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: .1rem;
+  gap: .05rem;
   border-bottom: 2px solid black;
   border-right: 2px solid black;
   user-select: none;
@@ -46,7 +50,9 @@ const emits = defineEmits(['categoryClicked']);
 
 .website-title {
   height: 32px;
-  width: 100%;
+  width: fit-content;
+  position: absolute;
+  left: 4px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -105,4 +111,9 @@ const emits = defineEmits(['categoryClicked']);
   }
 }
 
+@media(max-width: 360px) {
+  h3 {
+    font-size: 12px;
+  }
+}
 </style>

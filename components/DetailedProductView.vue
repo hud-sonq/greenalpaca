@@ -75,7 +75,6 @@ async function addToCart(product: ProductDocument) {
       successModalText.value = cart.addToCart(product);
       // successModalText.value = 'Added to cart!';
     } catch (error) {
-      console.log('error adding to cart', error);
       successModalText.value = (error as Error).message;
     }
   }
@@ -123,11 +122,6 @@ span {
 .atc-button:hover img {
   filter: invert(100%);
   transition: filter .3s ease-in-out;
-}
-
-.swiper {
-  width: 256px;
-  height: 256px;
 }
 
 .detail-text {

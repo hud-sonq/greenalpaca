@@ -12,7 +12,6 @@ const onlyAccessories = async (event: any) => {
     return products;
 }
 
-
 export default eventHandler(async (event: any) => {
     return await onlyAccessories(event);
 })

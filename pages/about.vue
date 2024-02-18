@@ -23,8 +23,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
-
 #main {
   opacity: 0;
   transition: opacity .3s ease-in-out;
