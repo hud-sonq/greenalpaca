@@ -4,7 +4,7 @@
     <NavBar @categoryClicked="handleCategoryChange"/>
     <ProductGrid :filterKind="filterKind" :filterThatWasClicked="filterThatWasClicked" :categoryToDisplay="category"/>
     <div v-if="constructionNoti">
-      <ConstructionNotification/>
+      <ConstructionNotification @emitClose="closeNoti"/>
     </div> 
   </div>
 </template>
@@ -14,7 +14,10 @@ const filterKind = ref("");
 const filterThatWasClicked = ref("");
 const category = ref("");
 
-let constructionNoti = true;
+let constructionNoti = ref(true);
+const closeNoti = () => {
+  constructionNoti.value = false;
+}
 
 const handleLogoClicked = () => {
   location.reload();
