@@ -10,21 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-useHead({
-  title: "green alpaca",
-  meta: [
-    { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/hike.png" },
-    { property: "og:image:alt", content: "company approved supply." },
-    { property: "og:site_name", content: "greenalpaca.xyz" },
-    { property: "og:type", content: "object" },
-    { property: "og:title", content: "greenalpaca.xyz" },
-    { property: "og:url", content: "https://greenalpaca.xyz" },
-    { property: "og:description", content: "company approved supply." },
-  ]
-});
-
-
-
 const filterKind = ref("");
 const filterThatWasClicked = ref("");
 const category = ref("");
