@@ -13,10 +13,13 @@
 useHead({
   title: "green alpaca",
   meta: [
-    { property: "og:title", content: "green alpaca" },
-    { property: "og:description", content: "company approved supply." },
+    { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/hike.png" },
+    { property: "og:image:alt", content: "company approved supply." },
+    { property: "og:site_name", content: "greenalpaca.xyz" },
+    { property: "og:type", content: "object" },
+    { property: "og:title", content: "greenalpaca.xyz" },
     { property: "og:url", content: "https://greenalpaca.xyz" },
-    { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/hike.png" }
+    { property: "og:description", content: "company approved supply." },
   ]
 });
 
