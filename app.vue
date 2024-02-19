@@ -7,23 +7,25 @@
 
 <script setup lang="ts">
 useHead({
-  title: "green alpaca",
+  title: "greenalpaca.xyz",
   meta: [
+    { property: "name", content: "greenalpaca.xyz" },
+    { property: "description", content: "company approved supply."},
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://greenalpaca.xyz/#" },
+    { property: "og:title", content: "greenalpaca.xyz" },
+    { property: "og:description", content: "company approved supply." },
+    { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/campaign.png" },
+    { property: "og:image:alt", content: "company approved supply." },
+    { property: "og:image:type", content: "image/png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" }, 
+    { property: "og:site_name", content: "greenalpaca.xyz" },
     { property: "twitter:image:src", content: "https://greenalpaca.xyz/resources/deco/png/campaign.png"},
     { property: "twitter:size", content: "@greenalpaca"},
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "greenalpaca.xyz" },
     { property: "twitter:description", content: "company approved supply." },
-    { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/hike.png" },
-    { property: "og:image:alt", content: "company approved supply." },
-    { property: "og:site_name", content: "greenalpaca.xyz" },
-    { property: "og:type", content: "object" },
-    { property: "og:title", content: "greenalpaca.xyz" },
-    { property: "og:url", content: "https://greenalpaca.xyz" },
-    { property: "og:description", content: "company approved supply." },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" }, 
   ]
 });
 </script>
