@@ -10,6 +10,18 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: "green alpaca",
+  meta: [
+    { property: "og:title", content: "green alpaca" },
+    { property: "og:description", content: "company approved supply." },
+    { property: "og:url", content: "https://greenalpaca.xyz" },
+    { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/hike.png" }
+  ]
+});
+
+
+
 const filterKind = ref("");
 const filterThatWasClicked = ref("");
 const category = ref("");
