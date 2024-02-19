@@ -12,7 +12,7 @@ useHead({
     { property: "name", content: "greenalpaca.xyz" },
     { property: "description", content: "company approved supply."},
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://greenalpaca.xyz/#" },
+    { property: "og:url", content: "https://greenalpaca.xyz/indexEmbed/tt1" },
     { property: "og:title", content: "greenalpaca.xyz" },
     { property: "og:description", content: "company approved supply." },
     { property: "og:image", content: "https://greenalpaca.xyz/resources/deco/png/campaign.png" },
