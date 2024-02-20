@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   modules: [
     ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate']}],
+    'nuxt-server-utils',
   ],
   imports: {
     dirs: ['stores'],
@@ -10,6 +11,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     mongoURI: '',
     discordWebhook: '',
+    discordToken: '',
     authSecret: '',
     ppClientSecret: '',
     public: {
