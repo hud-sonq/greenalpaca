@@ -45,6 +45,7 @@ h3 {
   gap: .05rem;
   border-bottom: 2px solid black;
   border-right: 2px solid black;
+  border-top: 2px solid black;
   user-select: none;
 }
 
@@ -112,6 +113,7 @@ h3 {
 
   #navbar {
     border-right: none;
+    border-top: none
   }
 }
 

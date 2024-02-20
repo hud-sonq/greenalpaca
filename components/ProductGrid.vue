@@ -119,12 +119,13 @@ onBeforeMount(async () => {
 <style scoped>
 #products-container {
   width: calc(100% - 74px);
-  height: calc(100% - 74px);
+  height: calc(100% - 76px);
   position: absolute;
   bottom: 0;
   right: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  border-right: 2px solid black;
 }
 
 #detailed-view-container {
@@ -185,5 +186,12 @@ onBeforeMount(async () => {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media(max-width: 768px) {
+  #products-container {
+    border-right: none;
+    bottom: 2px;
+  }
 }
 </style>

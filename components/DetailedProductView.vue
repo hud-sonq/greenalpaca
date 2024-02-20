@@ -161,7 +161,7 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  top: 0;
+  top: 2px;
   left: 0;
   width: 100%;
   height: calc(100% - 72px);
@@ -172,7 +172,7 @@ span {
   z-index: 3;
   background-color: white;
   position: fixed;
-  top: 74px;
+  top: 84px;
   left: calc(15vw + 76px);
   width: 72px;
   height: 72px;
@@ -258,7 +258,7 @@ span {
   }
 
   .go-back-button {
-    left: 76px;
+    left: 74px;
   }
 
 }

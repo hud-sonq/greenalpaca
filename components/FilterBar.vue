@@ -195,6 +195,7 @@ function closeFilterWindow() {
   align-items: center;
   border-right: 2px solid black;
   border-left: 2px solid black;
+  border-top: 2px solid black;
 }
 
 .filters-bulleted {
@@ -282,6 +283,7 @@ function closeFilterWindow() {
 
   #filterbar {
     border-left: none;
+    border-top: none;
   }
 }
 </style>
