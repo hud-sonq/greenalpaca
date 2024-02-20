@@ -109,6 +109,10 @@ h3 {
   .website-title {
     display: none;
   }
+
+  #navbar {
+    border-right: none;
+  }
 }
 
 @media(max-width: 360px) {

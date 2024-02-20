@@ -279,5 +279,9 @@ function closeFilterWindow() {
   .go-to-checkout {
     left: 0;
   }
+
+  #filterbar {
+    border-left: none;
+  }
 }
 </style>
