@@ -1,5 +1,5 @@
 <template>
-  <div id="detailed-view-container">
+  <div id="detailed-view-container" ref="detailContainer" class="">
     <DetailedProductView v-if="showDetail" @closeClicked="showDetail = false" :product="localProduct"/>
   </div>
   <div id="products-container" v-if="!showDetail">
@@ -24,6 +24,7 @@
 import type { ProductDocument } from '~/server/models/Product.model';
 
 let localProduct = {} as ProductDocument; // the product that was clicked on, which goes into detailed view
+let detailContainer = ref<HTMLElement | null>(null);
 
 let defaultFetchUrl = 'all'; // we need to consolidate APIs and remove this conention
 
@@ -41,6 +42,7 @@ const props = defineProps<{
 
 const handleProductClicked = (product: ProductDocument) => {
   showDetail.value = true;
+  detailContainer.value?.classList.add('active');
   localProduct = product;
 }
 
@@ -126,6 +128,7 @@ onBeforeMount(async () => {
 }
 
 #detailed-view-container {
+  display: none;
   width: calc(100% - 74px);
   height: calc(100% - 74px);
   position: absolute;
@@ -133,6 +136,10 @@ onBeforeMount(async () => {
   right: 0;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+#detailed-view-container.active {
+  display: block;
 }
 
 .title-and-toggled-filter {
